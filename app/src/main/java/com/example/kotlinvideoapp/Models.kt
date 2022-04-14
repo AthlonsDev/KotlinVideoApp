@@ -18,6 +18,6 @@ package com.example.kotlinvideoapp
 
     class Channel(
         val name: String,
-        val profileImageUrl: String,
+        val profileimageUrl: String,
 
         )

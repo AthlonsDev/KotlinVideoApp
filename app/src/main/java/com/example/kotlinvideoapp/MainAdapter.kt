@@ -4,7 +4,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 
 class MainAdapter(val homeFeed: HomeFeedModel): RecyclerView.Adapter<CustomViewHolder>() {
 
@@ -26,7 +28,14 @@ class MainAdapter(val homeFeed: HomeFeedModel): RecyclerView.Adapter<CustomViewH
         val videos = homeFeed.videos.get(index)
         holder.view.findViewById<TextView>(R.id.textView_videoTitle).text = videos.name
 
-        holder.view.findViewById<TextView>(R.id.textView_channel).text = videos.channel.name
+        holder.view.findViewById<TextView>(R.id.textView_channel).text = videos.channel.name + " . " + "20k Views \n 4 days ago"
+
+        val thumbnail = holder.view.findViewById<ImageView>(R.id.imageView_thumbnail)
+        Picasso.get().load(videos.imageUrl).into(thumbnail);
+
+        val channelProfileImageView = holder.view.findViewById<ImageView>(R.id.imageView_profile)
+        Picasso.get().load(videos.channel.profileimageUrl).into(channelProfileImageView);
+
     }
 }
 
