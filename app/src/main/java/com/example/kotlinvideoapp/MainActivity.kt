@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
 
 
     fun fetchJson() {
-        println("Attempitng to fetch json")
 
         val url = "https://api.letsbuildthatapp.com/youtube/home_feed"
 
