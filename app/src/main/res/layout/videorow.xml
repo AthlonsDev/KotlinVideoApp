@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView_thumbnail"
         android:layout_width="414dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,8 +17,30 @@
         android:id="@+id/textView_videoTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Video Title"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_profile"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_thumbnail" />
+
+    <TextView
+        android:id="@+id/textView_channel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="ChannelName"
+        app:layout_constraintEnd_toEndOf="@+id/textView_videoTitle"
+        app:layout_constraintStart_toStartOf="@+id/textView_videoTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textView_videoTitle" />
+
+    <ImageView
+        android:id="@+id/imageView_profile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView_thumbnail"
+        app:srcCompat="@mipmap/ic_launcher_round" />
 </android.support.constraint.ConstraintLayout>

@@ -25,6 +25,8 @@ class MainAdapter(val homeFeed: HomeFeedModel): RecyclerView.Adapter<CustomViewH
 //        val videoTitle = videoTitles.get(index)
         val videos = homeFeed.videos.get(index)
         holder.view.findViewById<TextView>(R.id.textView_videoTitle).text = videos.name
+
+        holder.view.findViewById<TextView>(R.id.textView_channel).text = videos.channel.name
     }
 }
 
