@@ -19,5 +19,12 @@ package com.example.kotlinvideoapp
     class Channel(
         val name: String,
         val profileimageUrl: String,
+    )
 
-        )
+    class CourseLesson(
+        val name: String,
+        val duration: String,
+        val number:Int,
+        val imageUrl: String,
+        val link: String
+    )
