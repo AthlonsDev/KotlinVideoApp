@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     fun fetchJson() {
 
         val url = "https://api.letsbuildthatapp.com/youtube/home_feed"
+//        val url = "https://jsonplaceholder.typicode.com/photos"
 
         val client = OkHttpClient()
         val request = Request.Builder().url(url).build()
