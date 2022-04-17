@@ -1,8 +1,6 @@
 package com.example.kotlinvideoapp
 
-import android.graphics.Color
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -10,9 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.gson.GsonBuilder
-import com.google.gson.internal.GsonBuildConfig
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.detail_activity.*
+import kotlinx.android.synthetic.main.detail_row.view.*
 import okhttp3.*
 import java.io.IOException
 
@@ -22,7 +21,7 @@ class DetailActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_activity)
         recycler_detail.layoutManager = LinearLayoutManager(this)
-        recycler_detail.adapter = DetailAdapter()
+
 //        recycler_detail.setBackgroundColor(Color.BLUE)
 
 //        cahnge navbar title
@@ -46,6 +45,9 @@ class DetailActivity: AppCompatActivity() {
                 val body = response.body()?.string()
                 val gSon = GsonBuilder().create()
                 val courseLesssons = gSon.fromJson(body, Array<CourseLesson>::class.java)
+                runOnUiThread {
+                    recycler_detail.adapter = DetailAdapter(detailFeed = courseLesssons)
+                }
             }
 
             override fun onFailure(call: Call, e: IOException) {
@@ -54,10 +56,12 @@ class DetailActivity: AppCompatActivity() {
         })
     }
 
-    private class DetailAdapter: RecyclerView.Adapter<DetailViewHolder>() {
+    private class DetailAdapter(detailFeed: Array<CourseLesson>): RecyclerView.Adapter<DetailViewHolder>() {
+
+        val feed = detailFeed
 
         override fun getItemCount(): Int {
-            return 5
+            return feed.count()
         }
 
         override fun onCreateViewHolder(p0: ViewGroup, p1: Int): DetailViewHolder {
@@ -75,6 +79,11 @@ class DetailActivity: AppCompatActivity() {
 
         override fun onBindViewHolder(holder: DetailViewHolder, index: Int) {
 
+            val videos = feed.get(index)
+            holder.customView.titleView.text = videos.name
+            holder.customView.subTitleView.text = videos.duration + " mins"
+            val thumbnail = holder.customView.imageView
+            Picasso.get().load(videos.imageUrl).into(thumbnail)
 
 
         }
