@@ -1,5 +1,6 @@
 package com.example.kotlinvideoapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -85,16 +86,36 @@ class DetailActivity: AppCompatActivity() {
             val thumbnail = holder.customView.imageView
             Picasso.get().load(videos.imageUrl).into(thumbnail)
 
+            holder.obj = videos
+
+            println(println("Link:  " + videos.link))
 
         }
+
+
 
     }
 
 
 
-    class DetailViewHolder(val customView: View): RecyclerView.ViewHolder (customView){
+    class DetailViewHolder(val customView: View, var obj: CourseLesson? = null): RecyclerView.ViewHolder (customView){
 
+        companion object {
+            val COURSE_LESSON_KEY = "COURSE_LESSON_LINK"
+        }
 
+        init {
+            customView.setOnClickListener {
+                println("Load Webview")
+                val intent = Intent(customView.context, CourseLessonActivity::class.java)
+                customView.context.startActivity(intent)
+
+                println("Link:  " + obj?.link)
+
+                intent.putExtra(COURSE_LESSON_KEY, obj?.link)
+
+            }
+        }
 
     }
 }
