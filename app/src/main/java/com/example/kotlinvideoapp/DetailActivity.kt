@@ -91,9 +91,6 @@ class DetailActivity: AppCompatActivity() {
             println(println("Link:  " + videos.link))
 
         }
-
-
-
     }
 
 
@@ -108,11 +105,12 @@ class DetailActivity: AppCompatActivity() {
             customView.setOnClickListener {
                 println("Load Webview")
                 val intent = Intent(customView.context, CourseLessonActivity::class.java)
-                customView.context.startActivity(intent)
 
-                println("Link:  " + obj?.link)
+                println("Course Link:  " + obj?.link)
 
                 intent.putExtra(COURSE_LESSON_KEY, obj?.link)
+
+                customView.context.startActivity(intent)
 
             }
         }
